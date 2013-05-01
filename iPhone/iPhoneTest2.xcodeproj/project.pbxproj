@@ -349,6 +349,7 @@
 				GCC_PREFIX_HEADER = iPhoneTest2_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = iPhoneTest2;
 				SDKROOT = iphoneos;
 			};
@@ -363,6 +364,7 @@
 				GCC_PREFIX_HEADER = iPhoneTest2_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = iPhoneTest2;
 				SDKROOT = iphoneos;
 			};
