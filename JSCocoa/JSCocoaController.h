@@ -27,7 +27,7 @@ struct	JSValueRefAndContextRef
 typedef struct	JSValueRefAndContextRef JSValueRefAndContextRef;
 
 #if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
-#import "iPhone/libffi/ffi.h"
+#import "ffi.h"
 #import "iPhone/BurksPool.h"
 #endif
 

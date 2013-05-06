@@ -15,7 +15,7 @@
 #import "JSCocoaFFIArgument.h"
 
 #if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
-#import "iPhone/libffi/ffi.h"
+#import "ffi.h"
 #endif
 
 

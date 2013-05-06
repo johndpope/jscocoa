@@ -13,7 +13,7 @@
 #include <ffi/ffi.h>
 #endif
 #if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
-#import "iPhone/libffi/ffi.h"
+#import "ffi.h"
 #endif
 
 @interface JSCocoaFFIArgument : NSObject {

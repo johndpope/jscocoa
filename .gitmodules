@@ -1,0 +1,3 @@
+[submodule "External/libffi-iOS"]
+	path = External/libffi-iOS
+	url = git://github.com/zwaldowski/libffi-iOS.git
