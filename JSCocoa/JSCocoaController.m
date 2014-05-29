@@ -66,7 +66,12 @@ const JSClassDefinition kJSClassDefinitionEmpty = { 0, 0,
 	
 
 
-
+@interface	JSCocoaMethodHolder : NSObject
+- (BOOL)setJSValue:(JSValueRefAndContextRef)valueAndContext forJSName:(JSValueRefAndContextRef)nameAndContext;
+- (JSValueRefAndContextRef)JSValueForJSName:(JSValueRefAndContextRef)nameAndContext;
+- (BOOL)deleteJSValueForJSName:(JSValueRefAndContextRef)nameAndContext;
+- (void)deallocAndCleanupJS;
+@end
 
 
 //
@@ -97,7 +102,7 @@ const JSClassDefinition kJSClassDefinitionEmpty = { 0, 0,
 	// Given a class, return the parent class implementing JSCocoaHolder method
 	static	id	jsClassParents;
 	// List of all ObjC classes written in Javascript
-	static	id	jsClasses;
+	static	NSMutableArray *jsClasses;
 	
 	// Given a class + methodName, retrieve its jsFunction
 	static	id	jsFunctionHash;
@@ -671,7 +676,8 @@ static id JSCocoaSingleton = NULL;
 - (JSValueRef)callJSFunctionNamed:(NSString*)name withArguments:(id)firstArg, ... 
 {
 	// Convert args to array
-	id arg, arguments = [NSMutableArray array];
+	id arg;
+    NSMutableArray *arguments = [NSMutableArray array];
 	if (firstArg)	[arguments addObject:firstArg];
 
 	if (firstArg)
@@ -1251,7 +1257,7 @@ static id JSCocoaSingleton = NULL;
 //	Later : Use method_copyArgumentType ?
 + (NSMutableArray*)parseObjCMethodEncoding:(const char*)typeEncoding
 {
-	id argumentEncodings = [NSMutableArray array];
+	NSMutableArray *argumentEncodings = [NSMutableArray array];
 	char* argsParser = (char*)typeEncoding;
 	for(; *argsParser; argsParser++)
 	{
@@ -1331,7 +1337,7 @@ static id JSCocoaSingleton = NULL;
 //
 + (NSMutableArray*)parseCFunctionEncoding:(NSString*)xml functionName:(NSString**)functionNamePlaceHolder
 {
-	id argumentEncodings = [NSMutableArray array];
+	NSMutableArray *argumentEncodings = [NSMutableArray array];
 	id xmlDocument = [[NSXMLDocument alloc] initWithXMLString:xml options:0 error:nil];
 	[xmlDocument autorelease];
 	id rootElement = [xmlDocument rootElement];
@@ -1342,7 +1348,7 @@ static id JSCocoaSingleton = NULL;
 	id	returnValue		= NULL;
 	for (i=0; i<numChildren; i++)
 	{
-		id child = [rootElement childAtIndex:i];
+		GDataXMLNode *child = [rootElement childAtIndex:i];
 		if ([child kind] != NSXMLElementKind)	continue;
 		
 		BOOL	isReturnValue = [[child name] isEqualToString:@"retval"];
@@ -1352,7 +1358,7 @@ static id JSCocoaSingleton = NULL;
 			id typeEncoding = [[child attributeForName:@"type64"] stringValue];
 			if (!typeEncoding)	typeEncoding = [[child attributeForName:@"type"] stringValue];
 #else
-			id typeEncoding = [[child attributeForName:@"type"] stringValue];
+			id typeEncoding = [[(GDataXMLElement *)child attributeForName:@"type"] stringValue];
 #endif			
 			char typeEncodingChar = [typeEncoding UTF8String][0];
 			if (typeEncodingChar == _C_CONST)
@@ -1718,7 +1724,7 @@ static id JSCocoaSingleton = NULL;
 	JSPropertyNameArrayRef jsNames = JSObjectCopyPropertyNames(c, o);
 	
 	// Convert js names to NSString names : { jsName1 : value1, jsName2 : value 2 } -> NSArray[name1, name2]
-	id names = [NSMutableArray array];
+	NSMutableArray *names = [NSMutableArray array];
 	size_t i, nameCount = JSPropertyNameArrayGetCount(jsNames);
 	// Length of target selector = length of method + length of each (argument + ':')
 	NSUInteger targetSelectorLength = [methodName length];
@@ -2326,8 +2332,8 @@ int	liveInstanceCount	= 0;
 }
 + (id)explainMethodEncoding:(id)encoding
 {
-	id argumentEncodings	= [JSCocoaController parseObjCMethodEncoding:[encoding UTF8String]];
-	id explication			= [NSMutableArray array];
+	id argumentEncodings = [JSCocoaController parseObjCMethodEncoding:[encoding UTF8String]];
+	NSMutableArray *explication	= [NSMutableArray array];
 	for (id arg in argumentEncodings)
 		[explication addObject:[arg typeDescription]
 		];
@@ -2590,8 +2596,6 @@ int	liveInstanceCount	= 0;
 #pragma mark Javascript setter functions
 // Give ObjC classes written in Javascript extra abilities like storing extra javascript variables in an internal __jsHash.
 //	The following methods handle that. JSCocoaMethodHolder is a dummy class to hold them.
-@interface	JSCocoaMethodHolder : NSObject
-@end
 @implementation JSCocoaMethodHolder
 - (BOOL)setJSValue:(JSValueRefAndContextRef)valueAndContext forJSName:(JSValueRefAndContextRef)nameAndContext
 {
@@ -3720,13 +3724,13 @@ call:
 				ffi_cif		cif;
 				ffi_type*	args[2];
 				void*		values[2];
-				char*		selector;
+				void*		selector;
 	
-				selector	= (char*)NSSelectorFromString(propertyName);
+				selector	= NSSelectorFromString(propertyName);
 				args[0]		= &ffi_type_pointer;
 				args[1]		= &ffi_type_pointer;
 				values[0]	= (void*)&callee;
-				values[1]	= (void*)&selector;
+				values[1]	= &selector;
 				
 				// Get return value holder
 				id returnValue = [argumentEncodings objectAtIndex:0];
@@ -4149,13 +4153,13 @@ static bool jsCocoaObject_setProperty(JSContextRef ctx, JSObjectRef object, JSSt
 			ffi_cif		cif;
 			ffi_type*	args[3];
 			void*		values[3];
-			char*		selector;
+			void*		selector;
 
-			selector	= (char*)NSSelectorFromString(setterName);
+			selector	= NSSelectorFromString(setterName);
 			args[0]		= &ffi_type_pointer;
 			args[1]		= &ffi_type_pointer;
 			values[0]	= (void*)&callee;
-			values[1]	= (void*)&selector;
+			values[1]	= &selector;
 
 			// Get arg (skip return value, instance, selector)
 			JSCocoaFFIArgument*	arg		= [argumentEncodings objectAtIndex:3];
@@ -4560,7 +4564,7 @@ static JSValueRef jsCocoaObject_callAsFunction_ffi(JSContextRef ctx, JSObjectRef
 	ffi_cif		cif;
 	ffi_type**	args	= NULL;
 	void**		values	= NULL;
-	char*		selector;
+	void*		selector;
 	// super call
 	struct		objc_super _super;
 	void*		superPointer;
@@ -4576,7 +4580,7 @@ static JSValueRef jsCocoaObject_callAsFunction_ffi(JSContextRef ctx, JSObjectRef
 		size_t		i, idx = 0;
 		if (callingObjC)
 		{
-			selector	= (char*)NSSelectorFromString(methodName);
+			selector	= NSSelectorFromString(methodName);
 			args[0]		= &ffi_type_pointer;
 			args[1]		= &ffi_type_pointer;
 			values[0]	= (void*)&callee;
