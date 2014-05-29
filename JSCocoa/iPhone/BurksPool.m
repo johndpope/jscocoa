@@ -164,7 +164,7 @@ static	id jsFunctionHash = nil;
 //
 + (id)flattenEncoding:(id)encodings
 {
-	id fullEncodingArray = [NSMutableArray array];
+	NSMutableArray *fullEncodingArray = [NSMutableArray array];
 	for (JSCocoaFFIArgument* arg in encodings)
 	{
 		if ([arg typeEncoding] == '{')	[fullEncodingArray addObject:[arg structureTypeEncoding]];

@@ -1013,7 +1013,7 @@ static NSMutableDictionary* typeEncodings = nil;
 
 + (NSArray*)typeEncodingsFromStructureTypeEncoding:(NSString*)structureTypeEncoding parsedCount:(NSInteger*)count
 {
-	id types = [[[NSMutableArray alloc] init] autorelease];
+	NSMutableArray *types = [[[NSMutableArray alloc] init] autorelease];
 	char* c = (char*)[structureTypeEncoding UTF8String];
 	char* c0 = c;
 	int	openedBracesCount = 0;
@@ -1310,7 +1310,7 @@ static NSMutableDictionary* typeEncodings = nil;
 	if (exception)	return	NO;
 
 	// Converted array
-	id array = [NSMutableArray array];
+	NSMutableArray *array = [NSMutableArray array];
 	// Converted array property
 	id value;
 	NSUInteger i;

@@ -319,7 +319,7 @@
 //
 + (id)imageNames
 {
-	id array = [NSMutableArray array];
+	NSMutableArray *array = [NSMutableArray array];
 
 	unsigned int imageCount;
 	const char** imageNames = objc_copyImageNames(&imageCount);
@@ -329,7 +329,7 @@
 		const char* cname	= imageNames[i];
 
 		// Gather image class names
-		id array2 = [NSMutableArray array];
+		NSMutableArray *array2 = [NSMutableArray array];
 		unsigned int classCount;
 		const char** classNames = objc_copyClassNamesForImage(cname, &classCount);
 		for (unsigned int j=0; j<classCount; j++)
@@ -356,14 +356,14 @@
 + (id)protocols
 {
 #if NS_BLOCKS_AVAILABLE
-	id array = [NSMutableArray array];
+	NSMutableArray *array = [NSMutableArray array];
 	unsigned int protocolCount;
 	Protocol** protocols = objc_copyProtocolList(&protocolCount);
 
 	for (unsigned int i=0; i<protocolCount; i++)
 	{
 		// array2 is modified by the following block
-		__block id array2	= [NSMutableArray array];
+		__block NSMutableArray *array2	= [NSMutableArray array];
 		Protocol* p	= protocols[i];
 
 		// Common block for copying protocol method descriptions
@@ -636,8 +636,8 @@ static void populateSubclasses(Class class, NSMutableArray* array, NSMutableDict
 {
 #if NS_BLOCKS_AVAILABLE
 	id classes		= [JSCocoaLib classes];
-	id subclasses	= [NSMutableArray array];
-	id subclassesHash	= [NSMutableDictionary dictionary];
+	NSMutableArray *subclasses	= [NSMutableArray array];
+	NSMutableDictionary *subclassesHash	= [NSMutableDictionary dictionary];
 	
 	for (id class in classes)
 	{
@@ -645,7 +645,7 @@ static void populateSubclasses(Class class, NSMutableArray* array, NSMutableDict
 		if (!superclass)	continue;
 		id superclassName	= [NSString stringWithUTF8String:class_getName(superclass)];
 		
-		id subclassesArray	= [subclassesHash objectForKey:superclassName];
+		NSMutableArray *subclassesArray	= [subclassesHash objectForKey:superclassName];
 		if (!subclassesArray)
 		{
 			subclassesArray	= [NSMutableArray array];
@@ -706,7 +706,7 @@ static void populateSubclasses(Class class, NSMutableArray* array, NSMutableDict
 	unsigned int ivarCount;
 	Ivar* ivars = class_copyIvarList(self, &ivarCount);
 	
-	id array = [NSMutableArray array];
+	NSMutableArray *array = [NSMutableArray array];
 	for (NSUInteger i=0; i<ivarCount; i++)
 	{
 		Ivar ivar	= ivars[i];
@@ -752,7 +752,7 @@ static void populateSubclasses(Class class, NSMutableArray* array, NSMutableDict
 	unsigned int propertyCount;
 	objc_property_t* properties = class_copyPropertyList(self, &propertyCount);
 	
-	id array = [NSMutableArray array];
+	NSMutableArray *array = [NSMutableArray array];
 	for (unsigned int i=0; i<propertyCount; i++)
 	{
 		objc_property_t property	= properties[i];
@@ -795,7 +795,7 @@ static void populateSubclasses(Class class, NSMutableArray* array, NSMutableDict
 	unsigned int protocolCount;
 	Protocol** protocols = class_copyProtocolList(self, &protocolCount);
 	
-	id array = [NSMutableArray array];
+	NSMutableArray *array = [NSMutableArray array];
 	for (unsigned int i=0; i<protocolCount; i++)
 	{
 		id name = [NSString stringWithUTF8String:protocol_getName(protocols[i])];
