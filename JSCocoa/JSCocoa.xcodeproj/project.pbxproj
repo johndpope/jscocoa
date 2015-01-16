@@ -24,6 +24,12 @@
 		3D9D7FBC0EF81CC600D71763 /* JSCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9D7FBA0EF81CC600D71763 /* JSCocoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3DC8AA5B0EFE08F700FC1F31 /* JSCocoaLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DC8AA590EFE08F700FC1F31 /* JSCocoaLib.h */; };
 		3DC8AA5C0EFE08F700FC1F31 /* JSCocoaLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC8AA5A0EFE08F700FC1F31 /* JSCocoaLib.m */; };
+		83BE4BF81A68D7BB006DA60D /* BurksPool.h in Headers */ = {isa = PBXBuildFile; fileRef = 83BE4BF31A68D7BB006DA60D /* BurksPool.h */; };
+		83BE4BF91A68D7BB006DA60D /* BurksPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BE4BF41A68D7BB006DA60D /* BurksPool.m */; };
+		83BE4BFA1A68D7BB006DA60D /* GDataDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 83BE4BF51A68D7BB006DA60D /* GDataDefines.h */; };
+		83BE4BFB1A68D7BB006DA60D /* GDataXMLNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 83BE4BF61A68D7BB006DA60D /* GDataXMLNode.h */; };
+		83BE4BFC1A68D7BB006DA60D /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BE4BF71A68D7BB006DA60D /* GDataXMLNode.m */; };
+		83BE4BFE1A68D815006DA60D /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BE4BFD1A68D815006DA60D /* libz.1.2.5.dylib */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -51,6 +57,12 @@
 		3D9D7FBA0EF81CC600D71763 /* JSCocoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSCocoa.h; sourceTree = "<group>"; };
 		3DC8AA590EFE08F700FC1F31 /* JSCocoaLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSCocoaLib.h; sourceTree = "<group>"; };
 		3DC8AA5A0EFE08F700FC1F31 /* JSCocoaLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSCocoaLib.m; sourceTree = "<group>"; };
+		83BE4BF31A68D7BB006DA60D /* BurksPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurksPool.h; sourceTree = "<group>"; };
+		83BE4BF41A68D7BB006DA60D /* BurksPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BurksPool.m; sourceTree = "<group>"; };
+		83BE4BF51A68D7BB006DA60D /* GDataDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataDefines.h; sourceTree = "<group>"; };
+		83BE4BF61A68D7BB006DA60D /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
+		83BE4BF71A68D7BB006DA60D /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
+		83BE4BFD1A68D815006DA60D /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* JSCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JSCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -61,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83BE4BFE1A68D815006DA60D /* libz.1.2.5.dylib in Frameworks */,
 				8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */,
 				3D9D7F8E0EF81A3100D71763 /* JavaScriptCore.framework in Frameworks */,
 			);
@@ -80,7 +93,9 @@
 		0867D691FE84028FC02AAC07 /* JSCocoa */ = {
 			isa = PBXGroup;
 			children = (
+				83BE4BFD1A68D815006DA60D /* libz.1.2.5.dylib */,
 				3D9D7FBA0EF81CC600D71763 /* JSCocoa.h */,
+				83BE4BF21A68D7BB006DA60D /* iPhone */,
 				08FB77AEFE84172EC02AAC07 /* Classes */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
 				089C1665FE841158C02AAC07 /* Resources */,
@@ -157,6 +172,18 @@
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
+		83BE4BF21A68D7BB006DA60D /* iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				83BE4BF31A68D7BB006DA60D /* BurksPool.h */,
+				83BE4BF41A68D7BB006DA60D /* BurksPool.m */,
+				83BE4BF51A68D7BB006DA60D /* GDataDefines.h */,
+				83BE4BF61A68D7BB006DA60D /* GDataXMLNode.h */,
+				83BE4BF71A68D7BB006DA60D /* GDataXMLNode.m */,
+			);
+			path = iPhone;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -166,6 +193,9 @@
 			files = (
 				3D9D7F7A0EF81A0100D71763 /* BridgeSupportController.h in Headers */,
 				3D9D7F7C0EF81A0100D71763 /* JSCocoaController.h in Headers */,
+				83BE4BFB1A68D7BB006DA60D /* GDataXMLNode.h in Headers */,
+				83BE4BF81A68D7BB006DA60D /* BurksPool.h in Headers */,
+				83BE4BFA1A68D7BB006DA60D /* GDataDefines.h in Headers */,
 				3D9D7F7E0EF81A0100D71763 /* JSCocoaFFIArgument.h in Headers */,
 				3D9D7F800EF81A0100D71763 /* JSCocoaFFIClosure.h in Headers */,
 				3D9D7F820EF81A0100D71763 /* JSCocoaPrivateObject.h in Headers */,
@@ -202,6 +232,9 @@
 /* Begin PBXProject section */
 		0867D690FE84028FC02AAC07 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+			};
 			buildConfigurationList = 1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "JSCocoa" */;
 			compatibilityVersion = "Xcode 2.4";
 			developmentRegion = English;
@@ -256,10 +289,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D9D7F7B0EF81A0100D71763 /* BridgeSupportController.m in Sources */,
+				83BE4BFC1A68D7BB006DA60D /* GDataXMLNode.m in Sources */,
 				3D9D7F7D0EF81A0100D71763 /* JSCocoaController.m in Sources */,
 				3D9D7F7F0EF81A0100D71763 /* JSCocoaFFIArgument.m in Sources */,
 				3D9D7F810EF81A0100D71763 /* JSCocoaFFIClosure.m in Sources */,
 				3D9D7F830EF81A0100D71763 /* JSCocoaPrivateObject.m in Sources */,
+				83BE4BF91A68D7BB006DA60D /* BurksPool.m in Sources */,
 				3DC8AA5C0EFE08F700FC1F31 /* JSCocoaLib.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,8 +317,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
-				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "x86_64 i386 ppc";
+				ARCHS = "$(ARCHS_STANDARD)";
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -294,6 +328,11 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = JSCocoa_Prefix.pch;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/include/libxml2,
+				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
@@ -306,8 +345,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
-				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "x86_64 i386 ppc";
+				ARCHS = "$(ARCHS_STANDARD)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -315,6 +353,11 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = JSCocoa_Prefix.pch;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/include/libxml2,
+				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				PRODUCT_NAME = JSCocoa;
@@ -325,15 +368,17 @@
 		1DEB91B208733DA50010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ONLY_ACTIVE_ARCH_PRE_XCODE_3_1)";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_ENABLE_OBJC_GC = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INSTALL_PATH = "@loader_path/../Frameworks";
-				ONLY_ACTIVE_ARCH_PRE_XCODE_3_1 = "$(NATIVE_ARCH_64)";
-				OTHER_LDFLAGS = "-lffi";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-lffi",
+					"-lxml2",
+				);
 				PREBINDING = NO;
 				SDKROOT = macosx;
 				WARNING_CFLAGS = (
@@ -346,14 +391,15 @@
 		1DEB91B308733DA50010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT_PRE_XCODE_3_1)";
-				ARCHS_STANDARD_64_BIT_PRE_XCODE_3_1 = x86_64;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_ENABLE_OBJC_GC = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INSTALL_PATH = "@loader_path/../Frameworks";
-				OTHER_LDFLAGS = "-lffi";
+				OTHER_LDFLAGS = (
+					"-lffi",
+					"-lxml2",
+				);
 				PREBINDING = NO;
 				SDKROOT = macosx;
 				WARNING_CFLAGS = (
